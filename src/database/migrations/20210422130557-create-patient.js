@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('patients', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('patient', {
     id_patient: {
       allowNull: false,
       autoIncrement: true,
@@ -33,11 +33,13 @@ module.exports = {
     created_at: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('NOW()'),
     },
     updated_at: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('NOW()'),
     },
   }),
-  down: queryInterface => queryInterface.dropTable('patients'),
+  down: queryInterface => queryInterface.dropTable('patient'),
 };

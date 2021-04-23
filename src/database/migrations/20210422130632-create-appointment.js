@@ -24,17 +24,19 @@ module.exports = {
       },
       onDelete: 'RESTRICT',
     },
-    date_schedulled: {
+    date_scheduled: {
       allowNull: false,
       type: Sequelize.DATE,
     },
     created_at: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('NOW()'),
     },
     updated_at: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: Sequelize.literal('NOW()'),
     },
   }),
   down: queryInterface => queryInterface.dropTable('appointment'),
