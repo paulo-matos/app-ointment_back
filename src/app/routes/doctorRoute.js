@@ -1,10 +1,10 @@
-const { Router } = require('express');
+const routes = require('express').Router();
 const DoctorController = require('../controllers/DoctorController');
 
-const routes = Router();
 
 routes.get('/doctor', DoctorController.index);
-routes.get('/doctor/:id', DoctorController.show);
+//routes.get('/doctor/:id', DoctorController.show);
+routes.get('/doctor/:name', DoctorController.findByName);
 routes.post('/doctor', DoctorController.store);
 routes.put('/doctor/:id', DoctorController.update);
 routes.delete('/doctor/:id', DoctorController.destroy);

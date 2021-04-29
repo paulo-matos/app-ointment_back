@@ -1,10 +1,16 @@
 const models = require('../models');
 const Doctor = models.Doctor;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 class DoctorController {
   async index(req, res) {
     try {
-      const doctors = await Doctor.findAll();
+      const doctors = await Doctor.findAll({
+        order: [
+          ['name', 'ASC']
+        ]
+      });
       return res.json(doctors);
     } catch (err) {
       return res.status(400).json({ error: err.message });
@@ -16,6 +22,25 @@ class DoctorController {
       const doctor = await Doctor.findByPk(req.params.id);
 
       return res.json(doctor);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+
+  async findByName(req, res) {
+    let varName = `${req.params.name}`;
+    try {
+      const doctors = await Doctor.findAll({
+        where: {
+          name: {
+            [Op.like]: `%${varName}%`
+          }
+        },
+        order: [
+          ['name', 'ASC']
+        ]
+      });
+      return res.json(doctors);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

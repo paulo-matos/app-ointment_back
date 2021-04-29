@@ -15,7 +15,6 @@ module.exports = {
     charset: 'utf8',
     freezeTableName: true
   },
-  timezone: "-03:00",
   dialectOptions: {
     dateStrings: true,
     typeCast: true,

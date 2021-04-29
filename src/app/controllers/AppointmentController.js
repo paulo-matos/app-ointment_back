@@ -4,7 +4,7 @@ const Appointment = models.Appointment;
 class AppointmentController {
   async index(req, res) {
     try {
-      const appointments = await Appointment.findAll();
+      const appointments = await Appointment.findAll({ include: { all: true } });
 
       return res.json(appointments);
     } catch (err) {

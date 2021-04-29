@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER,
-        },date_scheduled: {
+        },
+        date_scheduled: {
             type: DataTypes.DATE,
             validate: {
                 isDate: true,

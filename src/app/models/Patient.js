@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             allowNull: false,
             type: DataTypes.STRING,
+            validate: {
+                customValidator(value) {
+                    if (value == "") {
+                        throw new Error("Empty Name");
+                    }
+                }
+            }
         },
         email: {
             type: DataTypes.STRING,
@@ -25,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 customValidator(value) {
                     if (!Validator.cpf(value)) {
-                        throw new Error("CPF Inválido");
+                        throw new Error("CPF not valid");
                     }
                 }
             },
@@ -36,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 customValidator(value) {
                     if (!Validator.rg(value)) {
-                        throw new Error("RG Inválido");
+                        throw new Error("RG not valid");
                     }
                 }
             },
@@ -49,7 +56,13 @@ module.exports = (sequelize, DataTypes) => {
         },
         password: {
             type: DataTypes.STRING,
-            unique: true,
+            validate: {
+                customValidator(value) {
+                    if (value == "") {
+                        throw new Error("Empty Password");
+                    }
+                }
+            }
         }  
     });
 
